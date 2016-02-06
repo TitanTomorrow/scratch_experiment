@@ -1,44 +1,117 @@
-/* Extension demonstrating a hat block */
-/* Sayamindu Dasgupta <sayamindu@media.mit.edu>, May 2014 */
+/* Extension testing app services */
+/* Graham Chow graham_chow@yahoo.com */
 
 new (function() {
     var ext = this;
-    var alarm_went_off = false; // This becomes true after the alarm goes off
-
+    var _accel_x = 0;
+    var _accel_y = 0;
+    var _accel_z = 0;
+    var _accel_magnitude = 0;
+    var _speed = 0;
+    var _mag_x = 0;
+    var _mag_y = 0;
+    var _mag_z = 0;
+    var _mag_magnitude = 0;
+    var _altitude = 0;
+    var _pressure = 0;
+    var _temperature = 0;
+    var _gyro_x = 0;
+    var _gyro_y = 0;
+    var _gyro_z = 0;
+    var _app_family_name = 'MyriadSensors.PocketLab_7rn4hgttbgftw';
+    var _app_service_name = 'com.thepocketlab';
+    var _appConnection = null;
+    var _status = "unknown";
+    
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
-
-    // Status reporting code
-    // Use this to report missing hardware, plugin or unsupported browser
-    ext._getStatus = function() {
-        return {status: 2, msg: 'Ready'};
+    
+    ext.PollSensor = function ()
+    {
     };
 
-    ext.set_alarm = function(time) {
-       window.setTimeout(function() {
-           alarm_went_off = true;
-       }, time*1000);
+    ext.GetAccelX = function() {
+       return _accel_x;
     };
 
-    ext.when_alarm = function() {
-       // Reset alarm_went_off if it is true, and return true
-       // otherwise, return false.
-       if (alarm_went_off === true) {
-           alarm_went_off = false;
-           return true;
-       }
-
-       return false;
+    ext.GetAccelY = function() {
+       return _accel_y;
+    };
+    
+    ext.GetAccelZ = function() {
+       return _accel_z;
+    };
+    
+    ext.GetAccelMagnitude = function() {
+       return _accel_magnitude;
+    };
+    
+    ext.GetSpeed = function() {
+       return _speed;
+    };
+        
+    ext.GetMagX = function() {
+       return _mag_x;
     };
 
+    ext.GetMagY = function() {
+       return _mag_y;
+    };
+
+    ext.GetMagZ = function() {
+       return _mag_z;
+    };
+
+    ext.GetMagMagnitude = function() {
+       return _mag_magnitude;
+    };
+
+    ext.GetAltitude = function() {
+       return _altitude;
+    };
+
+    ext.GetPressure = function() {
+       return _pressure;
+    };
+    
+    ext.GetTemperature = function() {
+       return _temperature;
+    };
+    
+    ext.GetGyroX = function() {
+       return _gyro_x;
+    };
+    
+    ext.GetGyroX = function() {
+       return _gyro_y;
+    };
+    
+    ext.GetGyroX = function() {
+       return _gyro_z;
+    };
+    
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            ['', 'run alarm after %n seconds', 'set_alarm', '2'],
-            ['h', 'when alarm goes off', 'when_alarm'],
+            ['w', 'PollSensor', 'PollSensor']
+            ['r', 'Get AccelX Value', 'GetAccelX'],
+            ['r', 'Get AccelY Value', 'GetAccelY'],
+            ['r', 'Get AccelZ Value', 'GetAccelZ'],
+            ['r', 'Get AccelMagnitude Value', 'GetAccelMagnitude'],
+            ['r', 'Get Speed Value', 'GetSpeed' ],
+            ['r', 'Get MagX Value', 'GetMagX' ],
+            ['r', 'Get MagY Value', 'GetMagY' ],
+            ['r', 'Get MagZ Value', 'GetMagZ'],
+            ['r', 'Get MagMagnitude Value', 'GetMagMagnitude'],
+            ['r', 'Get Altitude Value', 'GetAltitude'],
+            ['r', 'Get Pressure Value', 'GetPressure'],
+            ['r', 'Get Temperature Value', 'GetTemperature'],
+            ['r', 'Get GyroX Value', 'GetGyroX'],
+            ['r', 'Get GyroY Value', 'GetGyroY'],
+            ['r', 'Get GyroZ Value', 'GetGyroZ']
         ]
     };
 
     // Register the extension
-    ScratchExtensions.register('Alarm extension', descriptor, ext);
+    ScratchExtensions.register('Test Extension', descriptor, ext);
 })();

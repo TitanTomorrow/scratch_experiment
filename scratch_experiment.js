@@ -149,6 +149,7 @@ new (function() {
         ]
     };
     
+    /*
 	var AppService = Windows.ApplicationModel.AppService;
 	var ValueSet = Windows.Foundation.Collections.ValueSet;
 	var _appConnection = null;
@@ -184,7 +185,7 @@ new (function() {
 			}
 		});
 	}
-
+*/
 
     
 

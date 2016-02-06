@@ -2,6 +2,20 @@
 /* Graham Chow graham_chow@yahoo.com */
 
 new (function() {
+    
+	function loadLWinJS()
+	{
+	    $.getScript('http://titantomorrow.github.io/scratch_experiment/base.js').done(function (script, textStatus) {
+			  console.log('Loaded BaseJS');
+
+		  })
+		  .fail(function (jqxhr, settings, exception) {
+			  console.log('Error loading BaseJS');
+		  });
+	}
+
+	loadLWinJS();
+    
     var ext = this;
     var _accel_x = 0;
     var _accel_y = 0;

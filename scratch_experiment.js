@@ -25,9 +25,16 @@ new (function() {
     
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
+
+    // Status reporting code
+    // Use this to report missing hardware, plugin or unsupported browser
+    ext._getStatus = function() {
+        return {status: 2, msg: 'Ready'};
+    };    
     
     ext.PollSensor = function ()
     {
+        return 0;
     };
 
     ext.GetAccelX = function() {
@@ -93,7 +100,7 @@ new (function() {
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            ['w', 'PollSensor', 'PollSensor']
+            ['w', 'PollSensor', 'PollSensor'],
             ['r', 'Get AccelX Value', 'GetAccelX'],
             ['r', 'Get AccelY Value', 'GetAccelY'],
             ['r', 'Get AccelZ Value', 'GetAccelZ'],

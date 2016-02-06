@@ -48,6 +48,22 @@ new (function() {
     
     ext.PollSensor = function ()
     {
+		return GetServiceConnection().then(function (connection) {
+			var message = new ValueSet();
+
+			return connection.sendMessageAsync(message).then(function (response) {
+				var e = response;
+				if (response.status === AppService.AppServiceResponseStatus.success) {
+					_accel_x = response.message.AccelX;
+                    _accel_y = response.message.AccelY;
+                    _accel_z = response.message.AccelZ;
+                    console.log('poll ok');
+				}
+				else {
+                    console.log('poll fail');
+				}
+			});
+		})        
         return 0;
     };
 
@@ -132,6 +148,45 @@ new (function() {
             ['r', 'Get GyroZ Value', 'GetGyroZ']
         ]
     };
+    
+	var AppService = Windows.ApplicationModel.AppService;
+	var ValueSet = Windows.Foundation.Collections.ValueSet;
+	var _appConnection = null;
+    
+	function serviceClosed() {
+		_appConnection.Dispose();
+		_appConnection = null;
+	}    
+    
+	function GetServiceConnection() {
+		return new WinJS.Promise(function (completeDispatch) 
+		{
+			if (_appConnection) {
+				completeDispatch(_appConnection);
+			} 
+			else {
+				_appConnection = new AppService.AppServiceConnection();
+				_appConnection.appServiceName = 'com.thepocketlab';
+				_appConnection.packageFamilyName = 'MyriadSensors.PocketLab_7rn4hgttbgftw';
+
+				_appConnection.openAsync().then(function (connectionStatus) {
+					if (connectionStatus == Windows.ApplicationModel.AppService.AppServiceConnectionStatus.success) {
+						_appConnection.onserviceclosed = serviceClosed;
+						return completeDispatch(_appConnection);
+					}
+					else {
+						_status = 'service not available';
+						_appConnection.Dispose();
+						_appConnection = null;
+						return completeDispatch(_appConnection);
+					}
+				});
+			}
+		});
+	}
+
+
+    
 
     // Register the extension
     ScratchExtensions.register('Test Extension', descriptor, ext);

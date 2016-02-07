@@ -125,8 +125,11 @@ new (function() {
             _port.onDisconnect.addListener(function(obj) {
                 _port = null;
             });
-        });    
-        _port.postMessage('poll');
+        }
+        if(_port != null)
+        {
+            _port.postMessage('poll');
+        }
     };
     
     // Block and block menu descriptions

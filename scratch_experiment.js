@@ -33,24 +33,9 @@ new (function() {
         return {status: 2, msg: 'Ready'};
     };    
     
-    ext.PollSensor = function ()
+    ext.PollSensor = function (msg)
     {
-		return GetServiceConnection().then(function (connection) {
-			var message = new ValueSet();
-
-			return connection.sendMessageAsync(message).then(function (response) {
-				var e = response;
-				if (response.status === AppService.AppServiceResponseStatus.success) {
-					_accel_x = response.message.AccelX;
-                    _accel_y = response.message.AccelY;
-                    _accel_z = response.message.AccelZ;
-                    console.log('poll ok');
-				}
-				else {
-                    console.log('poll fail');
-				}
-			});
-		})        
+        port.postMessage({joke: msg});
         return 0;
     };
 

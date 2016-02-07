@@ -102,25 +102,62 @@ new (function() {
             _port = chrome.runtime.connect('eakblppkkhgkfpahgflkokgpgohbkcjn');
             _port.onMessage.addListener(function(msg) {
                 console.log(msg.text);
-                var res = msg.text.split(' ');
-                if(res.length >= 16)
+                var res = msg.text.split(';');
+                for(int i=0;i<res.length;i++)
                 {
-                    _status = res[0];
-                    _accel_x = Number(res[1]);
-                    _accel_y = Number(res[2]);
-                    _accel_z = Number(res[3]);
-                    _accel_magnitude = Number(res[4]);
-                    _speed = Number(res[5]);
-                    _mag_x = Number(res[6]);
-                    _mag_y = Number(res[7]);
-                    _mag_z = Number(res[8]);
-                    _mag_magnitude = Number(res[9]);
-                    _altitude = Number(res[10]);
-                    _pressure = Number(res[11]);
-                    _temperature = Number(res[12]);
-                    _gyro_x = Number(res[13]);
-                    _gyro_y = Number(res[14]);
-                    _gyro_z = Number(res[15]);
+                    var val = res[i].split(' ');
+                    if(val.length >= 2)
+                    {
+                        var n = Number(val[1]);
+                        switch(val[0])
+                        {
+                            case 'AccelX':
+                                _accel_x = n;
+                                break;
+                            case 'AccelY':
+                                _accel_y = n;
+                                break;
+                            case 'AccelZ':
+                                _accel_z = n;
+                                break;
+                            case 'Speed':
+                                _speed = n;
+                                break;
+                            case 'AccelMagnitude':
+                                _accel_magnitude = n;
+                                break;
+                            case 'MagX':
+                                _mag_x = n;
+                                break;
+                            case 'MagY':
+                                _mag_y = n;
+                                break;
+                            case 'MagZ':
+                                _mag_z = n;
+                                break;
+                            case 'MagMagnitude':
+                                _mag_magnitude = n;
+                                break;
+                            case 'Altitude':
+                                _altitude = n;
+                                break;
+                            case 'Pressure':
+                                _pressure = n;
+                                break;
+                            case 'Temperature':
+                                _temperature = n;
+                                break;
+                            case 'GyroX':
+                                _gyro_x = n;
+                                break;
+                            case 'GyroY':
+                                _gyro_y = n;
+                                break;
+                            case 'GyroZ':
+                                _gyro_z = n;
+                                break;
+                        }
+                    }
                 }
             });
             _port.onDisconnect.addListener(function(obj) {

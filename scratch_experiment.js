@@ -33,12 +33,6 @@ new (function() {
         return {status: 2, msg: 'Ready'};
     };    
     
-    ext.PollSensor = function (msg)
-    {
-        console.log('poll');
-        port.postMessage({joke: msg});
-    };
-
     ext.GetAccelX = function() {
        return _accel_x;
     };
@@ -100,14 +94,21 @@ new (function() {
     };
     
     var port = chrome.runtime.connect('pcajcocaacnogeggjaelfcbnnbblojod', {name: "knockknock"});
-        console.log('connect');
-        port.postMessage({joke: "Knock knock"});
-        port.onMessage.addListener(function(msg) {
+    console.log('connect');
+    port.postMessage({joke: "Knock knock"});
+    port.onMessage.addListener(function(msg) {
         if (msg.question == "Who's there?")
             port.postMessage({answer: "Madame"});
         else if (msg.question == "Madame who?")
             port.postMessage({answer: "Madame... Bovary"});
     });    
+    
+    ext.PollSensor = function (msg)
+    {
+        console.log('poll');
+        port.postMessage({joke: "Knock knock"});
+    };
+    
     
     // Block and block menu descriptions
     var descriptor = {

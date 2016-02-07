@@ -102,8 +102,7 @@ new (function() {
             _port = chrome.runtime.connect('eakblppkkhgkfpahgflkokgpgohbkcjn');
             _port.onMessage.addListener(function(msg) {
                 console.log(msg);
-                console.log(msg.text);
-                var res = msg.text.split(';');
+                var res = msg.split(';');
                 for(i = 0;i<res.length;i++)
                 {
                     var val = res[i].split(' ');

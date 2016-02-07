@@ -101,6 +101,7 @@ new (function() {
         {
             _port = chrome.runtime.connect('pcajcocaacnogeggjaelfcbnnbblojod');
             _port.onMessage.addListener(function(msg) {
+                console.log(msg);
                 var res = msg.split(' ');
                 if(res.length >= 16)
                 {

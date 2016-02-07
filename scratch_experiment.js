@@ -103,9 +103,9 @@ new (function() {
             _port.onMessage.addListener(function(msg) {
                 console.log(msg.text);
                 var res = msg.text.split(';');
-                for each(var tup in res)
+                for(i = 0;i<res.length;i++)
                 {
-                    var val = tup.split(' ');
+                    var val = res[i].split(' ');
                     if(val.length >= 2)
                     {
                         var n = Number(val[1]);

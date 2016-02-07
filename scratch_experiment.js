@@ -2,20 +2,7 @@
 /* Graham Chow graham_chow@yahoo.com */
 
 new (function() {
-    
-	function loadLWinJS()
-	{
-	    $.getScript('http://titantomorrow.github.io/scratch_experiment/base.js').done(function (script, textStatus) {
-			  console.log('Loaded BaseJS');
-
-		  })
-		  .fail(function (jqxhr, settings, exception) {
-			  console.log('Error loading BaseJS');
-		  });
-	}
-
-	loadLWinJS();
-    
+   
     var ext = this;
     var _accel_x = 0;
     var _accel_y = 0;
@@ -126,6 +113,15 @@ new (function() {
     ext.GetGyroX = function() {
        return _gyro_z;
     };
+    
+    var port = chrome.runtime.connect({name: "knockknock"});
+        port.postMessage({joke: "Knock knock"});
+        port.onMessage.addListener(function(msg) {
+        if (msg.question == "Who's there?")
+            port.postMessage({answer: "Madame"});
+        else if (msg.question == "Madame who?")
+            port.postMessage({answer: "Madame... Bovary"});
+    });    
     
     // Block and block menu descriptions
     var descriptor = {

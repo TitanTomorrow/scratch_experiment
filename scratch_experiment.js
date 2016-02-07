@@ -4,6 +4,7 @@
 new (function() {
    
     var ext = this;
+    var _status = "unknown";
     var _accel_x = 0;
     var _accel_y = 0;
     var _accel_z = 0;
@@ -19,10 +20,7 @@ new (function() {
     var _gyro_x = 0;
     var _gyro_y = 0;
     var _gyro_z = 0;
-    var _app_family_name = 'MyriadSensors.PocketLab_7rn4hgttbgftw';
-    var _app_service_name = 'com.thepocketlab';
-    var _appConnection = null;
-    var _status = "unknown";
+    var _port = null;
     
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
@@ -31,6 +29,10 @@ new (function() {
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
+    };    
+    
+    ext.GetStatus = function() {
+        return _status;
     };    
     
     ext.GetAccelX = function() {
@@ -93,27 +95,45 @@ new (function() {
        return _gyro_z;
     };
     
-    
     ext.PollSensor = function (msg)
     {
-        console.log('poll');
-        var port = chrome.runtime.connect('pcajcocaacnogeggjaelfcbnnbblojod');
-        console.log('connect');
-        port.postMessage('Knock knock');
-        port.onMessage.addListener(function(msg) {
-            console.log('joke message');
-            if (msg.question == "Who's there?")
-                port.postMessage({answer: "Madame"});
-            else if (msg.question == "Madame who?")
-                port.postMessage({answer: "Madame... Bovary"});
+        if(_port == null)
+        {
+            _port = chrome.runtime.connect('pcajcocaacnogeggjaelfcbnnbblojod');
+            _port.onMessage.addListener(function(msg) {
+                var res = msg.split(' ');
+                if(res.length >= 16)
+                {
+                    _status = res[0];
+                    _accel_x = Number(res[1]);
+                    _accel_y = Number(res[2]);
+                    _accel_z = Number(res[3]);
+                    _accel_magnitude = Number(res[4]);
+                    _speed = Number(res[5]);
+                    _mag_x = Number(res[6]);
+                    _mag_y = Number(res[7]);
+                    _mag_z = Number(res[8]);
+                    _mag_magnitude = Number(res[9]);
+                    _altitude = Number(res[10]);
+                    _pressure = Number(res[11]);
+                    _temperature = Number(res[12]);
+                    _gyro_x = Number(res[13]);
+                    _gyro_y = Number(res[14]);
+                    _gyro_z = Number(res[15]);
+                }
+            });
+            _port.onDisconnect.addListener(function(obj) {
+                _port = null;
+            });
         });    
+        _port.postMessage('poll');
     };
-    
     
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
             [' ', 'PollSensor', 'PollSensor'],
+            ['r', 'Get Status', 'GetStatus'],
             ['r', 'Get AccelX Value', 'GetAccelX'],
             ['r', 'Get AccelY Value', 'GetAccelY'],
             ['r', 'Get AccelZ Value', 'GetAccelZ'],
@@ -131,46 +151,6 @@ new (function() {
             ['r', 'Get GyroZ Value', 'GetGyroZ']
         ]
     };
-    
-    /*
-	var AppService = Windows.ApplicationModel.AppService;
-	var ValueSet = Windows.Foundation.Collections.ValueSet;
-	var _appConnection = null;
-    
-	function serviceClosed() {
-		_appConnection.Dispose();
-		_appConnection = null;
-	}    
-    
-	function GetServiceConnection() {
-		return new WinJS.Promise(function (completeDispatch) 
-		{
-			if (_appConnection) {
-				completeDispatch(_appConnection);
-			} 
-			else {
-				_appConnection = new AppService.AppServiceConnection();
-				_appConnection.appServiceName = 'com.thepocketlab';
-				_appConnection.packageFamilyName = 'MyriadSensors.PocketLab_7rn4hgttbgftw';
-
-				_appConnection.openAsync().then(function (connectionStatus) {
-					if (connectionStatus == Windows.ApplicationModel.AppService.AppServiceConnectionStatus.success) {
-						_appConnection.onserviceclosed = serviceClosed;
-						return completeDispatch(_appConnection);
-					}
-					else {
-						_status = 'service not available';
-						_appConnection.Dispose();
-						_appConnection = null;
-						return completeDispatch(_appConnection);
-					}
-				});
-			}
-		});
-	}
-*/
-
-    
 
     // Register the extension
     ScratchExtensions.register('Test Extension', descriptor, ext);

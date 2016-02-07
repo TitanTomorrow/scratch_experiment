@@ -109,6 +109,7 @@ new (function() {
                     if(val.length >= 2)
                     {
                         var n = Number(val[1]);
+                        console.log(val[0] + '?' + val[1] + '?' + n);
                         switch(val[0])
                         {
                             case 'AccelX':

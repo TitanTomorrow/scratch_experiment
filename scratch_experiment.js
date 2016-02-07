@@ -105,7 +105,7 @@ new (function() {
                 var res = msg.split(';');
                 for(i = 0;i<res.length;i++)
                 {
-                    var val = res[i].split(' ');
+                    var val = res[i].split(':');
                     if(val.length >= 2)
                     {
                         var n = Number(val[1]);

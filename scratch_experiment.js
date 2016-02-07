@@ -128,6 +128,7 @@ new (function() {
         }
         if(_port != null)
         {
+            console.log('send poll');
             _port.postMessage('poll');
         }
     };

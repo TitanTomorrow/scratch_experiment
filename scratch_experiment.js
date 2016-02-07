@@ -35,8 +35,8 @@ new (function() {
     
     ext.PollSensor = function (msg)
     {
+        console.log('poll');
         port.postMessage({joke: msg});
-        return 0;
     };
 
     ext.GetAccelX = function() {
@@ -100,6 +100,7 @@ new (function() {
     };
     
     var port = chrome.runtime.connect('pcajcocaacnogeggjaelfcbnnbblojod', {name: "knockknock"});
+        console.log('connect');
         port.postMessage({joke: "Knock knock"});
         port.onMessage.addListener(function(msg) {
         if (msg.question == "Who's there?")
@@ -111,7 +112,7 @@ new (function() {
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            ['w', 'PollSensor', 'PollSensor'],
+            [' ', 'PollSensor', 'PollSensor'],
             ['r', 'Get AccelX Value', 'GetAccelX'],
             ['r', 'Get AccelY Value', 'GetAccelY'],
             ['r', 'Get AccelZ Value', 'GetAccelZ'],

@@ -93,9 +93,9 @@ new (function() {
        return _gyro_z;
     };
     
-    var port = chrome.runtime.connect('pcajcocaacnogeggjaelfcbnnbblojod', {name: "knockknock"});
+    var port = chrome.runtime.connect('pcajcocaacnogeggjaelfcbnnbblojod');
     console.log('connect');
-    port.postMessage({joke: "Knock knock"});
+    port.postMessage('Knock knock');
     port.onMessage.addListener(function(msg) {
         console.log('joke message');
         if (msg.question == "Who's there?")

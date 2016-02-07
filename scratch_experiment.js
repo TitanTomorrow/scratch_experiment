@@ -101,8 +101,8 @@ new (function() {
         {
             _port = chrome.runtime.connect('pcajcocaacnogeggjaelfcbnnbblojod');
             _port.onMessage.addListener(function(msg) {
-                console.log(msg);
-                var res = msg.split(' ');
+                console.log(msg.text);
+                var res = msg.text.split(' ');
                 if(res.length >= 16)
                 {
                     _status = res[0];

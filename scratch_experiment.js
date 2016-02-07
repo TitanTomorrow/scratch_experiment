@@ -129,7 +129,7 @@ new (function() {
         if(_port != null)
         {
             console.log('send poll');
-            _port.sendMessage('poll');
+            _port.postMessage('poll');
         }
     };
     

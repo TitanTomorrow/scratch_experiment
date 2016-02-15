@@ -99,7 +99,7 @@ new (function() {
     {
         if(_port == null)
         {
-            _port = chrome.runtime.connect('eakblppkkhgkfpahgflkokgpgohbkcjn');
+            _port = chrome.runtime.connect('fjlkkilodihnadbohdmhmmfomncpbcmd');
             _port.onMessage.addListener(function(msg) {
                 console.log(msg);
                 var res = msg.split(';');

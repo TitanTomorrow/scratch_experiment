@@ -36,77 +36,77 @@ new (function() {
     
     ext.GetAccelX = function() {
         console.log('get accel poll');
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _accel_x;
     };
 
     ext.GetAccelY = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _accel_y;
     };
     
     ext.GetAccelZ = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _accel_z;
     };
     
     ext.GetAccelMagnitude = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _accel_magnitude;
     };
     
     ext.GetSpeed = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _speed;
     };
         
     ext.GetMagX = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _mag_x;
     };
 
     ext.GetMagY = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _mag_y;
     };
 
     ext.GetMagZ = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _mag_z;
     };
 
     ext.GetMagMagnitude = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _mag_magnitude;
     };
 
     ext.GetAltitude = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _altitude;
     };
 
     ext.GetPressure = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _pressure;
     };
     
     ext.GetTemperature = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _temperature;
     };
     
     ext.GetGyroX = function() {
-        EnsurePocketLabPoll();
+        ext.EnsurePocketLabPoll();
         return _gyro_x;
     };
     
-    ext.GetGyroX = function() {
-        EnsurePocketLabPoll();
+    ext.GetGyroY = function() {
+        ext.EnsurePocketLabPoll();
         return _gyro_y;
     };
     
-    ext.GetGyroX = function() {
-        EnsurePocketLabPoll();
+    ext.GetGyroZ = function() {
+        ext.EnsurePocketLabPoll();
         return _gyro_z;
     };
     

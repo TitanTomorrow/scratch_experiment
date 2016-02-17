@@ -1,6 +1,6 @@
 /* ScratchX extension for PocketLab */
 /* copyright Myriad Sensors, Inc */
-/* http://scratchx.org/?url=http://titantomorrow.github.io/scratch_experiment/PocketLab_extension.js#scratch */
+/* http://scratchx.org/?url=http://titantomorrow.github.io/scratch_experiment/PocketLab_extension.js */
 
 new (function() {
    
@@ -217,7 +217,7 @@ new (function() {
             ['r', 'Get GyroX Value', 'GetGyroX'],
             ['r', 'Get GyroY Value', 'GetGyroY'],
             ['r', 'Get GyroZ Value', 'GetGyroZ']
-        ]
+        ],
         url: 'http://titantomorrow.github.io/scratch_experiment'
     };
 

@@ -35,7 +35,6 @@ new (function() {
     };    
     
     ext.GetAccelX = function() {
-        console.log('get accel poll');
         ext.EnsurePocketLabPoll();
         return _accel_x;
     };
@@ -111,7 +110,6 @@ new (function() {
     };
     
     ext.EnsurePocketLabPoll = function() {
-        console.log('ensure poll');
         if(_intervalId == 0)
             _intervalId = window.setInterval(function() { ext.PollSensor(); }, 50);
     }
@@ -122,16 +120,14 @@ new (function() {
     
     ext.PollSensor = function ()
     {
-        console.log('poll');
         _statusCount--;
         if(_statusCount < 0)
             _statusCount = 0;
         
         if(_port == null)
         {
-            _port = chrome.runtime.connect('eakblppkkhgkfpahgflkokgpgohbkcjn');
+            _port = chrome.runtime.connect('nollioelchnndkcbppijjokdajnhcnde');
             _port.onMessage.addListener(function(msg) {
-                console.log(msg);
                 _statusCount = 10;
                 var res = msg.split(';');
                 for(i = 0;i<res.length;i++)
@@ -197,7 +193,6 @@ new (function() {
         }
         if(_port != null)
         {
-            console.log('send poll');
             _port.postMessage('poll');
         }
     };

@@ -35,6 +35,7 @@ new (function() {
     };    
     
     ext.GetAccelX = function() {
+        console.log('get accel poll');
         EnsurePocketLabPoll();
         return _accel_x;
     };

@@ -1,7 +1,6 @@
 /* ScratchX extension for PocketLab */
 /* copyright Myriad Sensors, Inc */
-
-http://scratchx.org/?url=http://titantomorrow.github.io/scratch_experiment/PocketLab_extension.js#scratch
+/* http://scratchx.org/?url=http://titantomorrow.github.io/scratch_experiment/PocketLab_extension.js#scratch */
 
 new (function() {
    
@@ -127,7 +126,7 @@ new (function() {
         
         if(_port == null)
         {
-            _port = chrome.runtime.connect('fjlkkilodihnadbohdmhmmfomncpbcmd');
+            _port = chrome.runtime.connect('eakblppkkhgkfpahgflkokgpgohbkcjn');
             _port.onMessage.addListener(function(msg) {
                 console.log(msg);
                 _statusCount = 10;
@@ -223,5 +222,5 @@ new (function() {
     };
 
     // Register the extension
-    ScratchExtensions.register('Test Extension', descriptor, ext);
+    ScratchExtensions.register('PocketLab Extension', descriptor, ext);
 })();

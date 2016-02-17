@@ -110,8 +110,9 @@ new (function() {
     };
     
     ext.EnsurePocketLabPoll = function() {
+        console.log('ensure poll');
         if(_intervalId == 0)
-            _intervalId = window.setInterval(function() { PollSensor(); }, 50);
+            _intervalId = window.setInterval(function() { ext.PollSensor(); }, 50);
     }
     
     ext._shutdown = function() {
@@ -120,6 +121,7 @@ new (function() {
     
     ext.PollSensor = function ()
     {
+        console.log('poll');
         _statusCount--;
         if(_statusCount < 0)
             _statusCount = 0;
@@ -218,7 +220,7 @@ new (function() {
             ['r', 'Get GyroY Value', 'GetGyroY'],
             ['r', 'Get GyroZ Value', 'GetGyroZ']
         ],
-        url: 'http://titantomorrow.github.io/scratch_experiment'
+        url: 'http://titantomorrow.github.io/scratch_experiment/README.md'
     };
 
     // Register the extension

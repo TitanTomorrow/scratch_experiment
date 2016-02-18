@@ -36,7 +36,7 @@ new (function() {
     
     ext.GetAccelX = function() {
         ext.EnsurePocketLabPoll();
-        console.log('accelx:" + _accel_x);
+        console.log('accelx:' + _accel_x);
         return _accel_x;
     };
 
@@ -141,6 +141,7 @@ new (function() {
                         {
                             case 'AccelX':
                                 _accel_x = n;
+                                console.log('poll' + _accel_x);
                                 break;
                             case 'AccelY':
                                 _accel_y = n;

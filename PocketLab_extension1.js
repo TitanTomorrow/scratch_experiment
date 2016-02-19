@@ -1,6 +1,5 @@
 /* ScratchX extension for PocketLab */
 /* copyright Myriad Sensors, Inc */
-/* http://scratchx.org/?url=http://titantomorrow.github.io/scratch_experiment/PocketLab_extension.js */
 
 new (function() {
    
@@ -23,10 +22,13 @@ new (function() {
     var _gyro_z = 0;
     var _port = null;
     var _intervalId = 0;
+    var isChrome = !!window.chrome && !!window.chrome.webstore;
     
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
+        if(isChrome == false)
+            return {status: 1, msg: 'PocketLab ScratchX Extension is only supported on Chrome'};
         if(_port == null)
             return {status: 1, msg: 'PocketLab ScratchX Extension not connected'};
         if(_statusCount <= 0)
@@ -111,7 +113,7 @@ new (function() {
     };
     
     ext.EnsurePocketLabPoll = function() {
-        if(_intervalId == 0)
+        if((_intervalId == 0) && (isChrome == false))
             _intervalId = window.setInterval(function() { ext.PollSensor(); }, 50);
     }
     
@@ -218,7 +220,7 @@ new (function() {
             ['r', 'Get GyroY Value', 'GetGyroY'],
             ['r', 'Get GyroZ Value', 'GetGyroZ']
         ],
-        url: 'http://titantomorrow.github.io/scratch_experiment/README.md'
+        url: 'http://ThePocketLab.github.io/ScratchX/README.md'
     };
 
     // Register the extension

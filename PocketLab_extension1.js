@@ -113,7 +113,7 @@ new (function() {
     };
     
     ext.EnsurePocketLabPoll = function() {
-        if((_intervalId == 0) && (isChrome == false))
+        if((_intervalId == 0) && (isChrome == true))
             _intervalId = window.setInterval(function() { ext.PollSensor(); }, 50);
     }
     

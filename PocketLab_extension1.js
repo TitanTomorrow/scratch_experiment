@@ -127,7 +127,7 @@ new (function() {
         
         if(_port == null)
         {
-            _port = chrome.runtime.connect('nollioelchnndkcbppijjokdajnhcnde');
+            _port = chrome.runtime.connect('mjjkdikegondcpdflbniengckkedfooo');
             _port.onMessage.addListener(function(msg) {
                 _statusCount = 10;
                 var res = msg.split(';');

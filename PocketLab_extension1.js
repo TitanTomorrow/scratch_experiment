@@ -223,4 +223,6 @@ new (function() {
 
     // Register the extension
     ScratchExtensions.register('PocketLab Extension', descriptor, ext);
+    
+    ext.EnsurePocketLabPoll();
 })();

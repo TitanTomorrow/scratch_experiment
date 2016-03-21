@@ -239,7 +239,7 @@ new (function() {
             ['r', 'Get Temperature Value', 'GetTemperature'],
             ['r', 'Get GyroX Value', 'GetGyroX'],
             ['r', 'Get GyroY Value', 'GetGyroY'],
-            ['r', 'Get GyroZ Value', 'GetGyroZ']
+            ['r', 'Get GyroZ Value', 'GetGyroZ'],
             ['r', 'Get Status Count', 'GetStatusCount']
         ],
         url: 'http://ThePocketLab.github.io/ScratchX/README.md'

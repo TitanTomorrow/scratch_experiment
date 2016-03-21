@@ -23,6 +23,7 @@ new (function() {
     var _port = null;
     var _intervalId = 0;
     var isChrome = !!window.chrome && !!window.chrome.webstore;
+    var _connectCount = 0;
     
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
@@ -131,8 +132,9 @@ new (function() {
         {
             _port = chrome.runtime.connect('mjjkdikegondcpdflbniengckkedfooo');
             _port.onMessage.addListener(function(msg) {
-                _statusCount = 10;
                 var res = msg.split(';');
+                if(res.length > 0)
+                    _statusCount = 10;
                 for(i = 0;i<res.length;i++)
                 {
                     var val = res[i].split(':');

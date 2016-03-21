@@ -132,9 +132,8 @@ new (function() {
         {
             _port = chrome.runtime.connect('mjjkdikegondcpdflbniengckkedfooo');
             _port.onMessage.addListener(function(msg) {
+                var found_data = false;
                 var res = msg.split(';');
-                if(res.length > 0)
-                    _statusCount = 10;
                 for(i = 0;i<res.length;i++)
                 {
                     var val = res[i].split(':');
@@ -146,52 +145,68 @@ new (function() {
                             case 'AccelX':
                                 _accel_x = n;
                                 console.log('poll' + _accel_x);
+                                found_data = true;
                                 break;
                             case 'AccelY':
                                 _accel_y = n;
                                 break;
                             case 'AccelZ':
                                 _accel_z = n;
+                                found_data = true;
                                 break;
                             case 'Speed':
                                 _speed = n;
+                                found_data = true;
                                 break;
                             case 'AccelMagnitude':
                                 _accel_magnitude = n;
+                                found_data = true;
                                 break;
                             case 'MagX':
                                 _mag_x = n;
+                                found_data = true;
                                 break;
                             case 'MagY':
                                 _mag_y = n;
+                                found_data = true;
                                 break;
                             case 'MagZ':
                                 _mag_z = n;
+                                found_data = true;
                                 break;
                             case 'MagMagnitude':
                                 _mag_magnitude = n;
+                                found_data = true;
                                 break;
                             case 'Altitude':
                                 _altitude = n;
+                                found_data = true;
                                 break;
                             case 'Pressure':
                                 _pressure = n;
+                                found_data = true;
                                 break;
                             case 'Temperature':
                                 _temperature = n;
+                                found_data = true;
                                 break;
                             case 'GyroX':
                                 _gyro_x = n;
+                                found_data = true;
                                 break;
                             case 'GyroY':
                                 _gyro_y = n;
+                                found_data = true;
                                 break;
                             case 'GyroZ':
                                 _gyro_z = n;
+                                found_data = true;
                                 break;
                         }
                     }
                 }
+                if(found_data)
+                    _statusCount = 10;
             });
             _port.onDisconnect.addListener(function(obj) {
                 _port = null;

@@ -122,6 +122,10 @@ new (function() {
         clearInterval(_intervalId);
     };
     
+    
+    ext.GetStatusCount = function() {
+        return _statusCount;
+    };    
     ext.PollSensor = function ()
     {
         _statusCount--;
@@ -236,6 +240,7 @@ new (function() {
             ['r', 'Get GyroX Value', 'GetGyroX'],
             ['r', 'Get GyroY Value', 'GetGyroY'],
             ['r', 'Get GyroZ Value', 'GetGyroZ']
+            ['r', 'Get Status Count', 'GetStatusCount']
         ],
         url: 'http://ThePocketLab.github.io/ScratchX/README.md'
     };
